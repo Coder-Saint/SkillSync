@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Career Alignment Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="glow-bg glow-1"></div>
+    <div class="container" style="max-width: 800px;">
+        <header style="text-align: center; margin-bottom: 2rem;">
+            <h1 class="gradient-text" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">📄 Career Alignment</h1>
+            <p style="color: #94a3b8;">Help us generate an actionable learning path tailored to your goals.</p>
+        </header>
+
+        <div class="glass-card">
+            <form action="/analysis" method="POST">
+                <input type="hidden" name="test_type" value="recommendations">
+                
+                <div class="input-group" style="margin-bottom: 2rem;">
+                    <label>What is your primary target role for 2026?</label>
+                    <select name="target_role" style="width: 100%; padding: 1rem; border-radius: 8px; background: rgba(0,0,0,0.3); color: white; border: 1px solid #cbd5e1;">
+                        <option value="backend">Backend Developer (Java, Firebase, Node)</option>
+                        <option value="data">Data Scientist / Machine Learning Engineer</option>
+                        <option value="fullstack">Full-Stack Web Developer</option>
+                    </select>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 2rem;">
+                    <label>What is your preferred method of learning new technology?</label>
+                    <select name="learning_style" style="width: 100%; padding: 1rem; border-radius: 8px; background: rgba(0,0,0,0.3); color: white; border: 1px solid #cbd5e1;">
+                        <option value="video">Watching detailed video lectures (Coursera, Udemy)</option>
+                        <option value="hands_on">Interactive, hands-on coding environments</option>
+                        <option value="docs">Reading official documentation and building projects</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary" style="background: #f59e0b;">Generate Custom Roadmap 🚀</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

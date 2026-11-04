@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSync - Career Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="glow-bg glow-1"></div>
+    <div class="glow-bg glow-2"></div>
+
+    <div class="container">
+        <nav class="navbar glass-card" style="padding: 1rem 2rem; margin-bottom: 2rem;">
+            <div class="logo">Skill<span class="gradient-text">Alchemy</span></div>
+            <a href="/seeker_dashboard" class="btn-pill blue-btn">Back to Dashboard</a>
+        </nav>
+
+        <div class="glass-card">
+            <div class="progress-container">
+                <div class="step-text" id="step-indicator">Step 1 of 3: Core Technical Skills</div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-bar" style="width: 33%;"></div>
+                </div>
+            </div>
+
+            <form action="/analysis" method="POST" id="assessment-form">
+                <div class="form-step active" id="step-1">
+                    <h3 class="gradient-text">Test 1: Core Technical Skills</h3>
+                    <input type="hidden" name="test_type" value="technical">
+                    
+                    <div class="input-group">
+                        <label>1. Programming Languages (Python, Java, etc.)</label>
+                        <div>
+                            <label><input type="radio" name="skill_1" value="1" required> Beginner (Syntax level)</label>
+                            <label><input type="radio" name="skill_1" value="2"> Intermediate (Can build small apps)</label>
+                            <label><input type="radio" name="skill_1" value="3"> Advanced (Understand OOP & architecture)</label>
+                            <label><input type="radio" name="skill_1" value="4"> Expert (Production-level optimization)</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>2. Database Management (SQL/NoSQL)</label>
+                        <div>
+                            <label><input type="radio" name="skill_2" value="1" required> Beginner (Basic CRUD)</label>
+                            <label><input type="radio" name="skill_2" value="2"> Intermediate (Joins & Relational mapping)</label>
+                            <label><input type="radio" name="skill_2" value="3"> Advanced (Indexing & query optimization)</label>
+                            <label><input type="radio" name="skill_2" value="4"> Expert (Database architecture & scaling)</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>3. Version Control (Git)</label>
+                        <div>
+                            <label><input type="radio" name="skill_3" value="1" required> Beginner (Commit & Push)</label>
+                            <label><input type="radio" name="skill_3" value="2"> Intermediate (Branching & Merging)</label>
+                            <label><input type="radio" name="skill_3" value="3"> Advanced (Resolving complex conflicts)</label>
+                            <label><input type="radio" name="skill_3" value="4"> Expert (CI/CD pipeline integration)</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>4. Cloud & Deployment</label>
+                        <div>
+                            <label><input type="radio" name="skill_4" value="1" required> Beginner (Localhost only)</label>
+                            <label><input type="radio" name="skill_4" value="2"> Intermediate (Basic manual deployments)</label>
+                            <label><input type="radio" name="skill_4" value="3"> Advanced (Containerization / Docker)</label>
+                            <label><input type="radio" name="skill_4" value="4"> Expert (Microservices & Auto-scaling)</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>5. API Integration & Development</label>
+                        <div>
+                            <label><input type="radio" name="skill_5" value="1" required> Beginner (Can fetch data)</label>
+                            <label><input type="radio" name="skill_5" value="2"> Intermediate (Can build REST endpoints)</label>
+                            <label><input type="radio" name="skill_5" value="3"> Advanced (Authentication & OAuth)</label>
+                            <label><input type="radio" name="skill_5" value="4"> Expert (GraphQL / WebSockets)</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>6. Testing & Debugging</label>
+                        <div>
+                            <label><input type="radio" name="skill_6" value="1" required> Beginner (Print statements)</label>
+                            <label><input type="radio" name="skill_6" value="2"> Intermediate (Using a debugger tool)</label>
+                            <label><input type="radio" name="skill_6" value="3"> Advanced (Writing unit tests)</label>
+                            <label><input type="radio" name="skill_6" value="4"> Expert (Test-Driven Development)</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>7. System Architecture</label>
+                        <div>
+                            <label><input type="radio" name="skill_7" value="1" required> Beginner (Single file scripts)</label>
+                            <label><input type="radio" name="skill_7" value="2"> Intermediate (MVC pattern)</label>
+                            <label><input type="radio" name="skill_7" value="3"> Advanced (Decoupled systems)</label>
+                            <label><input type="radio" name="skill_7" value="4"> Expert (Distributed systems)</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>8. Algorithmic Efficiency</label>
+                        <div>
+                            <label><input type="radio" name="skill_8" value="1" required> Beginner (Nested loops / Brute force)</label>
+                            <label><input type="radio" name="skill_8" value="2"> Intermediate (Understand Big O)</label>
+                            <label><input type="radio" name="skill_8" value="3"> Advanced (Hash Maps / Sets)</label>
+                            <label><input type="radio" name="skill_8" value="4"> Expert (Dynamic Programming)</label>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-primary" onclick="nextStep(2)">Continue to SWOT Analysis</button>
+                </div>
+
+                <div class="form-step" id="step-2">
+                    <h3 class="gradient-text">Test 2: Behavioral SWOT</h3>
+                    
+                    <div class="input-group">
+                        <label>1. When facing a massive, ambiguous project, you usually:</label>
+                        <select name="swot_1">
+                            <option value="S">Break it down into a highly organized roadmap</option>
+                            <option value="W">Feel overwhelmed and struggle to start</option>
+                            <option value="O">Seek out a mentor or documentation to guide me</option>
+                            <option value="T">Worry about failing and procrastinate</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>2. Your approach to harsh code reviews is:</label>
+                        <select name="swot_2">
+                            <option value="S">Treat it objectively as a way to improve</option>
+                            <option value="W">Take it personally and feel defensive</option>
+                            <option value="O">Ask follow-up questions to learn their mindset</option>
+                            <option value="T">Avoid submitting code until I think it's perfect</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>3. When working on a team, you prefer to:</label>
+                        <select name="swot_3">
+                            <option value="S">Lead discussions and assign tasks</option>
+                            <option value="W">Stay silent and just do what I am told</option>
+                            <option value="O">Act as the bridge between different team members</option>
+                            <option value="T">Work entirely alone to avoid conflict</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>4. If a critical server crashes at 2 AM, your instinct is:</label>
+                        <select name="swot_4">
+                            <option value="S">Stay calm and systematically check the logs</option>
+                            <option value="W">Panic and start trying random fixes</option>
+                            <option value="O">Wake up the senior dev to learn how they fix it</option>
+                            <option value="T">Assume someone else will handle it</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>5. Keeping up with industry trends:</label>
+                        <select name="swot_5">
+                            <option value="S">I actively build weekend projects with new tech</option>
+                            <option value="W">I only learn what is required for my current class/job</option>
+                            <option value="O">I follow newsletters and adapt when the market shifts</option>
+                            <option value="T">I feel exhausted by how fast things change</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>6. When estimating how long a task will take:</label>
+                        <select name="swot_6">
+                            <option value="S">I use historical data to give accurate timelines</option>
+                            <option value="W">I almost always underestimate and miss deadlines</option>
+                            <option value="O">I buffer my time to account for unexpected bugs</option>
+                            <option value="T">I refuse to give estimates because it's too stressful</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>7. Communicating technical ideas to non-technical people:</label>
+                        <select name="swot_7">
+                            <option value="S">I excel at using simple analogies</option>
+                            <option value="W">I get frustrated when they don't understand the jargon</option>
+                            <option value="O">I use visual diagrams to bridge the gap</option>
+                            <option value="T">I avoid talking to business stakeholders entirely</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>8. Writing documentation for your code:</label>
+                        <select name="swot_8">
+                            <option value="S">I write clean, comprehensive READMEs</option>
+                            <option value="W">I skip it because my code is "self-explanatory"</option>
+                            <option value="O">I use AI tools to help generate standard docstrings</option>
+                            <option value="T">I view it as a waste of time</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" class="btn-primary" onclick="nextStep(3)">Continue to Learning Style</button>
+                </div>
+
+                <div class="form-step" id="step-3">
+                    <h3 class="gradient-text">Test 3: Learning Style</h3>
+                    
+                    <div class="input-group">
+                        <label>1. When learning a new framework, you start by:</label>
+                        <select name="learn_1">
+                            <option value="Visual">Watching a crash course on YouTube</option>
+                            <option value="Reading">Reading the official documentation</option>
+                            <option value="Kinesthetic">Opening an IDE and just building</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>2. You remember syntax best when:</label>
+                        <select name="learn_2">
+                            <option value="Visual">You see it color-coded in a video</option>
+                            <option value="Reading">You write it down in your personal notes</option>
+                            <option value="Kinesthetic">You type it out repeatedly</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>3. When stuck on a bug, your first move is:</label>
+                        <select name="learn_3">
+                            <option value="Visual">Looking for a diagram explaining the data flow</option>
+                            <option value="Reading">Searching StackOverflow and reading answers</option>
+                            <option value="Kinesthetic">Using trial and error with print statements</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>4. How do you prefer to absorb architecture concepts?</label>
+                        <select name="learn_4">
+                            <option value="Visual">Whiteboarding out the flow</option>
+                            <option value="Reading">Reading case studies from tech blogs</option>
+                            <option value="Kinesthetic">Building a quick, minimal prototype</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>5. In a lecture or meeting, you usually:</label>
+                        <select name="learn_5">
+                            <option value="Visual">Focus entirely on the slides and screen</option>
+                            <option value="Reading">Take detailed, structured written notes</option>
+                            <option value="Kinesthetic">Try to follow along with code on your laptop</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>6. If you have to explain a concept to someone else:</label>
+                        <select name="learn_6">
+                            <option value="Visual">You draw a picture for them</option>
+                            <option value="Reading">You send them a link to an article</option>
+                            <option value="Kinesthetic">You sit next to them and walk through the code together</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>7. Which environment helps you focus best?</label>
+                        <select name="learn_7">
+                            <option value="Visual">A clean desk with multiple monitors</option>
+                            <option value="Reading">A quiet library with reference books</option>
+                            <option value="Kinesthetic">Listening to intense music and just coding</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>8. Your ideal tutorial length is:</label>
+                        <select name="learn_8">
+                            <option value="Visual">Short, heavily edited 5-minute clips</option>
+                            <option value="Reading">Long-form text that I can skim</option>
+                            <option value="Kinesthetic">Interactive coding platforms with instant feedback</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Generate AI Roadmap & Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(step) {
+            document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+            
+            const pBar = document.getElementById('progress-bar');
+            const stepText = document.getElementById('step-indicator');
+            
+            if(step === 2) {
+                pBar.style.width = '66%';
+                stepText.innerText = 'Step 2 of 3: Behavioral SWOT';
+                
+                // --- THE MATH FIX ---
+                // We have 8 questions * Max value 4 = 32 maximum points
+                let totalPoints = 0;
+                const radios = document.querySelectorAll('input[type="radio"]:checked');
+                radios.forEach(radio => totalPoints += parseInt(radio.value));
+                
+                let finalPercentage = Math.round((totalPoints / 32) * 100);
+                
+                // Add the calculation as a hidden field so the backend gets the exact 100% scaled math
+                let hiddenInput = document.createElement("input");
+                hiddenInput.setAttribute("type", "hidden");
+                hiddenInput.setAttribute("name", "calculated_tech_score");
+                hiddenInput.setAttribute("value", finalPercentage);
+                document.getElementById('assessment-form').appendChild(hiddenInput);
+            } else if(step === 3) {
+                pBar.style.width = '100%';
+                stepText.innerText = 'Step 3 of 3: Learning Style';
+            }
+        }
+    </script>
+</body>
+</html>

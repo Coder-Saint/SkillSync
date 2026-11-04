@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Who Are You?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="glow-bg glow-2"></div>
+
+    <div class="container" style="text-align: center; margin-top: 5rem;">
+        <h1 style="margin-bottom: 3rem; font-size: 2.5rem;">Who Are You?</h1>
+        
+        <div class="role-container">
+            <a href="/onboarding" style="text-decoration: none; color: white;">
+                <div class="role-card">
+                    <span class="role-icon">👤</span>
+                    <h2>Job Seeker</h2>
+                    <p style="color: #94a3b8;">I want to analyze my skills and find jobs.</p>
+                </div>
+            </a>
+
+            <a href="/recruiter_onboarding" style="text-decoration: none; color: white;">
+                <div class="role-card" style="border-color: #a855f7;">
+                    <span class="role-icon">🏢</span>
+                    <h2>Recruiter</h2>
+                    <p style="color: #94a3b8;">I want to post jobs and find talent.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

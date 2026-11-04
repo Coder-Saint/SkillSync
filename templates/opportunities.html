@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Job Opportunities</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="glow-bg glow-1"></div>
+    <div class="glow-bg glow-2"></div>
+
+    <nav class="navbar">
+        <div class="logo"><span>✨</span> CareerIntel Jobs</div>
+        <a href="/dashboard" style="color: white; text-decoration: none;">← Back to Dashboard</a>
+    </nav>
+
+    <div class="container" style="max-width: 900px; margin-top: 3rem;">
+        <header style="text-align: center; margin-bottom: 3rem;">
+            <h1 class="gradient-text">Active Opportunities</h1>
+            <p style="color: #94a3b8;">Apply to roles posted directly by our recruiter network.</p>
+        </header>
+
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            {% for job in jobs %}
+            <div class="glass-card" style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem;">
+                <div>
+                    <h2 style="margin: 0 0 5px 0; color: #34d399;">{{ job.title }}</h2>
+                    <div style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 10px;">
+                        <span>🏢 {{ job.company }}</span> &nbsp;|&nbsp; 
+                        <span>💰 {{ job.salary }}</span>
+                    </div>
+                    <div>
+                        <span style="font-weight: 600; font-size: 0.85rem; color: white;">Required:</span> 
+                        <span style="color: #cbd5e1; font-size: 0.85rem;">{{ job.skills }}</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <a href="/apply/{{ job.id }}" class="btn-primary" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #3b82f6, #2563eb); text-decoration: none;">Apply Now 🚀</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="glass-card" style="text-align: center; color: #94a3b8;">
+                No active job postings at the moment. Check back later!
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

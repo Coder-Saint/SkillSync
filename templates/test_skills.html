@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Technical Skills Evaluation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="glow-bg glow-1"></div>
+    <div class="container" style="max-width: 800px;">
+        <header style="text-align: center; margin-bottom: 2rem;">
+            <h1 class="gradient-text">🎯 Skill Gap Evaluation</h1>
+            <p style="color: #94a3b8;">Answer honestly to generate an accurate Market Radar Chart.</p>
+        </header>
+
+        <div class="glass-card">
+            <form action="/analysis" method="POST">
+                <input type="hidden" name="test_type" value="skills">
+                
+                <div class="input-group" style="margin-bottom: 2rem;">
+                    <label>1. Algorithms & Coding</label>
+                    <select name="q_coding" style="width: 100%; padding: 1rem; border-radius: 8px; background: rgba(0,0,0,0.3); color: white; border: 1px solid #cbd5e1;">
+                        <option value="20">Beginner: I know basic syntax (Loops, If/Else).</option>
+                        <option value="50">Intermediate: I can build simple scripts and use APIs.</option>
+                        <option value="80">Advanced: I can optimize code and understand Data Structures.</option>
+                        <option value="100">Expert: I write production-ready, scalable architecture.</option>
+                    </select>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 2rem;">
+                    <label>2. Cloud Architecture (AWS/Azure/Firebase)</label>
+                    <select name="q_cloud" style="width: 100%; padding: 1rem; border-radius: 8px; background: rgba(0,0,0,0.3); color: white; border: 1px solid #cbd5e1;">
+                        <option value="10">None: I run code locally.</option>
+                        <option value="40">Familiar: I have deployed an app using Heroku/Vercel.</option>
+                        <option value="70">Proficient: I use AWS EC2, S3, or Firebase regularly.</option>
+                        <option value="95">Expert: I design multi-region serverless architectures.</option>
+                    </select>
+                </div>
+                
+                <input type="hidden" name="q_devops" value="50">
+                <input type="hidden" name="q_data" value="60">
+                <input type="hidden" name="q_ml" value="30">
+
+                <button type="submit" class="btn-primary" style="background: #3b82f6;">Generate Radar Chart 📊</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

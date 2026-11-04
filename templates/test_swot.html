@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Behavioral SWOT Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="glow-bg glow-2"></div>
+    <div class="container" style="max-width: 800px;">
+        <header style="text-align: center; margin-bottom: 2rem;">
+            <h1 class="gradient-text" style="background: linear-gradient(135deg, #10b981, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">📈 Behavioral SWOT Test</h1>
+            <p style="color: #94a3b8;">We use scenario-based questions to map your psychological profile.</p>
+        </header>
+
+        <div class="glass-card">
+            <form action="/analysis" method="POST">
+                <input type="hidden" name="test_type" value="swot">
+                
+                <div class="input-group" style="margin-bottom: 2rem;">
+                    <label>Scenario 1: A major project deadline is moved up by a week. What is your immediate reaction?</label>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                        <label style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; cursor: pointer;"><input type="radio" name="q_stress" value="plan" required> I immediately restructure the timeline and cut non-essential features.</label>
+                        <label style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; cursor: pointer;"><input type="radio" name="q_stress" value="code"> I dive straight into the code and work 12-hour days to finish it.</label>
+                        <label style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; cursor: pointer;"><input type="radio" name="q_stress" value="help"> I call a team meeting to redistribute the workload evenly.</label>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 2rem;">
+                    <label>Scenario 2: When working on a complex new feature, you prefer to:</label>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                        <label style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; cursor: pointer;"><input type="radio" name="q_team" value="solo" required> Work entirely alone so I can focus without distractions.</label>
+                        <label style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; cursor: pointer;"><input type="radio" name="q_team" value="lead"> Take the lead, outline the architecture, and assign pieces to others.</label>
+                        <label style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; cursor: pointer;"><input type="radio" name="q_team" value="follow"> Wait for a senior engineer to assign me a specific ticket.</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="background: #10b981;">Analyze My Psychology 🧠</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

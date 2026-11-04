@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Recruiter Setup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="recruiter-mode">
+    <div class="container">
+        
+        <div class="progress-container">
+            <div class="step-text" id="step-counter" style="color: #d97706;">Step 1 of 3</div>
+            <div class="progress-bar-bg" style="background: #e2e8f0;">
+                <div class="progress-bar-fill orange" id="progress-fill" style="width: 33%;"></div>
+            </div>
+        </div>
+
+        <div class="glass-card recruiter-card">
+            <form action="/recruiter_dashboard" method="POST">
+                
+                <div class="form-step active" id="step1">
+                    <h2 style="color: #1e293b;">🏢 Company Profile</h2>
+                    <div class="form-grid">
+                        <div class="input-group"><label>Company Name</label><input type="text" name="company_name" placeholder="Tech Corp Inc."></div>
+                        <div class="input-group"><label>Industry</label><input type="text" name="industry" placeholder="SaaS, Fintech..."></div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="input-group"><label>Size</label><select name="size"><option>1-50</option><option>50-200</option><option>200+</option></select></div>
+                        <div class="input-group"><label>Founded Year</label><input type="number" name="founded"></div>
+                    </div>
+                    <div class="input-group"><label>Description</label><textarea name="description" style="height: 80px;"></textarea></div>
+                    <button type="button" class="btn-recruiter" onclick="nextStep(2)">Next Step →</button>
+                </div>
+
+                <div class="form-step" id="step2">
+                    <h2 style="color: #1e293b;">👤 Recruiter Details</h2>
+                    <div class="form-grid">
+                        <div class="input-group"><label>Your Name</label><input type="text" name="recruiter_name" placeholder="Jane Smith"></div>
+                        <div class="input-group"><label>Work Email</label><input type="email" name="recruiter_email"></div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="input-group"><label>Phone</label><input type="text" name="phone"></div>
+                        <div class="input-group"><label>Role</label><input type="text" name="role" placeholder="HR Manager"></div>
+                    </div>
+                    <button type="button" class="btn-recruiter" onclick="nextStep(3)">Next Step →</button>
+                </div>
+
+                <div class="form-step" id="step3">
+                    <h2 style="color: #1e293b;">💼 First Job Posting</h2>
+                    <div class="form-grid">
+                        <div class="input-group"><label>Job Title</label><input type="text" name="job_title" placeholder="Senior Software Engineer"></div>
+                        <div class="input-group"><label>Department</label><input type="text" name="dept" placeholder="Engineering"></div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="input-group"><label>Experience (Years)</label><input type="text" name="exp" placeholder="3-5 years"></div>
+                        <div class="input-group"><label>Salary Range</label><input type="text" name="salary" placeholder="$80k - $120k"></div>
+                    </div>
+                    <div class="input-group"><label>Required Skills</label><textarea name="skills" placeholder="Python, React, AWS..."></textarea></div>
+                    
+                    <button type="submit" class="btn-recruiter">Post Job & Complete ✓</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(step) {
+            document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+            let percent = step * 33.3;
+            document.getElementById('progress-fill').style.width = percent + '%';
+            document.getElementById('step-counter').innerText = 'Step ' + step + ' of 3';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSync | Career Intelligence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="glow-bg glow-1"></div>
+    <div class="glow-bg glow-2"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span>✨</span> SkillSync
+        </div>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <span style="color: var(--text-muted); font-size: 0.9rem;">Job Seeker Dashboard</span>
+            <div style="width: 35px; height: 35px; background: linear-gradient(135deg, #6366f1, #a855f7); border-radius: 50%;"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero-text">
+            <h1>Skill Gap Analysis</h1>
+            <p>Compare your current skills against market requirements to find your missing links.</p>
+        </div>
+
+        <div class="glass-card">
+            <form method="POST" action="/">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>👤 Your Current Skills</label>
+                        <textarea name="user_skills" placeholder="Enter your skills (e.g. Python, Java, Data Analysis, Leadership)..." required>{{ request.form.get('user_skills', '') }}</textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label>💼 Target Job Requirements</label>
+                        <textarea name="job_desc" placeholder="Paste the job description or required skills here..." required>{{ request.form.get('job_desc', '') }}</textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Analyze My Profile ✨</button>
+            </form>
+
+            {% if result %}
+            <div class="results-container">
+                <div class="score-display">
+                    <div style="color: var(--text-muted); margin-bottom: 10px;">Match Compatibility</div>
+                    <div class="score-number">{{ result.score }}%</div>
+                </div>
+
+                <div class="skill-lists">
+                    <div class="list-col">
+                        <h3 class="success-text">✅ You Have</h3>
+                        <div>
+                            {% for skill in result.matches %}
+                                <span class="skill-tag">{{ skill|title }}</span>
+                            {% else %}
+                                <p style="color: var(--text-muted);">No direct matches found yet.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="list-col">
+                        <h3 class="warning-text">⚠️ Missing Skills</h3>
+                        <div>
+                            {% for skill in result.missing %}
+                                <span class="skill-tag missing">{{ skill|title }}</span>
+                            {% else %}
+                                <p style="color: var(--text-muted);">Great job! No obvious gaps.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>

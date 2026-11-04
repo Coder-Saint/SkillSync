@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Career Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="glow-bg glow-1"></div>
+    <div class="container">
+        
+        <header style="text-align: center; margin-bottom: 3rem;">
+            <h1 class="gradient-text">Deep Dive Assessment</h1>
+            <p style="color: #94a3b8;">Rate yourself accurately to generate your Market Intelligence Report.</p>
+        </header>
+
+        <div class="glass-card">
+            <form action="/analysis" method="POST">
+                
+                <div class="section-box" style="margin-bottom: 3rem;">
+                    <h2 style="color: #34d399; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                        1. Technical Skill Ratings (1-100)
+                    </h2>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">This data builds your Radar Chart.</p>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Coding / Algorithms</label>
+                            <input type="range" name="score_coding" min="0" max="100" value="50" oninput="this.nextElementSibling.value = this.value">
+                            <output style="color: white; font-weight: bold;">50</output>
+                        </div>
+                        <div class="input-group">
+                            <label>Cloud Computing (AWS/Azure)</label>
+                            <input type="range" name="score_cloud" min="0" max="100" value="30" oninput="this.nextElementSibling.value = this.value">
+                            <output style="color: white; font-weight: bold;">30</output>
+                        </div>
+                        <div class="input-group">
+                            <label>DevOps & Tools</label>
+                            <input type="range" name="score_devops" min="0" max="100" value="40" oninput="this.nextElementSibling.value = this.value">
+                            <output style="color: white; font-weight: bold;">40</output>
+                        </div>
+                        <div class="input-group">
+                            <label>Data Statistics</label>
+                            <input type="range" name="score_stats" min="0" max="100" value="60" oninput="this.nextElementSibling.value = this.value">
+                            <output style="color: white; font-weight: bold;">60</output>
+                        </div>
+                        <div class="input-group">
+                            <label>Machine Learning / AI</label>
+                            <input type="range" name="score_ml" min="0" max="100" value="20" oninput="this.nextElementSibling.value = this.value">
+                            <output style="color: white; font-weight: bold;">20</output>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-box" style="margin-bottom: 3rem;">
+                    <h2 style="color: #3b82f6; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                        2. SWOT Analysis Input
+                    </h2>
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Your Biggest Strength</label>
+                            <textarea name="swot_strength" placeholder="e.g. Fast learner, Leadership..." style="height: 60px;"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Your Main Weakness</label>
+                            <textarea name="swot_weakness" placeholder="e.g. Public speaking, Python..." style="height: 60px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="font-size: 1.2rem;">Generate Intelligence Report 🚀</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
